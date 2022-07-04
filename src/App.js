@@ -12,7 +12,7 @@ class App extends React.Component {
       cardAttr2: '',
       cardAttr3: '',
       cardImage: '',
-      cardRare: '',
+      cardRare: 'normal',
       cardTrunfo: false,
       isSaveButtonDisabled: true,
     };
@@ -54,6 +54,18 @@ class App extends React.Component {
     const status = !this.onBtnValidate();
     this.setState(() => ({ isSaveButtonDisabled: status,
     }));
+  }
+
+  onSaveButtonClick = () => {
+    this.setState({
+      cardName: '',
+      cardDescription: '',
+      cardAttr1: '0',
+      cardAttr2: '0',
+      cardAttr3: '0',
+      cardImage: '',
+      cardRare: 'normal',
+    });
   }
 
   onInputChange = (event) => {
