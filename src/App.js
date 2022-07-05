@@ -15,6 +15,7 @@ class App extends React.Component {
       cardRare: 'normal',
       cardTrunfo: false,
       isSaveButtonDisabled: true,
+      hasTrunfo: false,
     };
     this.onInputChange = this.onInputChange.bind(this); // bind para que this dentro do class funcione.
   }
@@ -51,12 +52,21 @@ class App extends React.Component {
   }
 
   onButtonStatusHandler = () => {
-    const status = !this.onBtnValidate();
+    const status = !this.onBtnValidate(); // isSaveButtonDisabled esta 'true'(desabilitado), porém quando a condição passar a ser true, por ter '!', ele passará ser false, assim habilitando o btn.
     this.setState(() => ({ isSaveButtonDisabled: status,
     }));
   }
 
   onSaveButtonClick = () => {
+    const {
+      cardTrunfo,
+    } = this.state;
+
+    if (cardTrunfo) {
+      this.setState({
+        hasTrunfo: true,
+      });
+    }
     this.setState({
       cardName: '',
       cardDescription: '',
@@ -84,6 +94,7 @@ class App extends React.Component {
       cardRare,
       cardTrunfo,
       isSaveButtonDisabled,
+      hasTrunfo,
     } = this.state; // forma controlada.
     return (
       <>
@@ -99,7 +110,7 @@ class App extends React.Component {
           cardImage={ cardImage }
           cardRare={ cardRare }
           cardTrunfo={ cardTrunfo }
-          hasTrunfo
+          hasTrunfo={ hasTrunfo }
           isSaveButtonDisabled={ isSaveButtonDisabled }
           onSaveButtonClick={ this.onSaveButtonClick }
           onInputChange={ this.onInputChange }
